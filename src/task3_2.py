@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from pyspark.ml.feature import VectorAssembler, StringIndexer
 from pyspark.sql import SparkSession
 from pyspark.ml.classification import LogisticRegression
@@ -34,6 +36,7 @@ def task3_2():
     preds0 = lrn.predict(examples[0][0])
     preds1 = lrn.predict(examples[1][0])
 
+    Path("../out").mkdir(parents=True, exist_ok=True)
     with open("../out/out_3_2.txt", "w") as f:
         f.write(f"class\n{preds0}\n{preds1}")
 
